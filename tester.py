@@ -1,7 +1,6 @@
-from Glass import Glass
-from Glass import Route
+from Glass import Server, Route
 
-s = Glass()
+s = Server()
 
 
 def testRoute(request,response):

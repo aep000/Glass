@@ -1,6 +1,6 @@
 import socket
 
-class Glass:
+class Server:
     def __init__(self, ip="127.0.0.1", port=5000):
         self.ip=ip
         self.port = port
