@@ -1,5 +1,5 @@
 # Glass
-Object Oriented web framework made using python sockets
+Object Oriented Python web framework made using sockets
 
 ## Example Usage
 ```python
