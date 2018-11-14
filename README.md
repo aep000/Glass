@@ -1,7 +1,7 @@
 # Glass
 Object Oriented web framework made using python sockets
 
-##Example Usage
+## Example Usage
 ```python
 from Glass import Server, Route
 s = Server()
