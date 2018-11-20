@@ -2,14 +2,14 @@ from Glass import Server, Route
 
 s = Server()
 
-
-def testRoute(request,response):
+def firstRoute(request,response):
     print request.params
-    response.body = str(request.params)
+    response.body = "Hello World"
     return response
 
-r =  Route("/",testRoute)
 
+r =  Route("/",firstRoute)
 s.add_route(r)
+
 
 s.run()

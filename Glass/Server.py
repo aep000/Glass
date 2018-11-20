@@ -19,6 +19,7 @@ class Server:
     def set_error_code(self, code, response):
         self.errorRoutes[code] = response
 
+
     def run(self):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_TCP)
         s.bind((self.ip, self.port))
@@ -93,19 +94,23 @@ class Request:
         self.resource = statusline[1]
         self.__process_path()
         self.version = statusline[2]
+        self.raw_headers = self.__process_headers(data[1:])
+        self.body = ''.join(requesttext.splitlines(True)[len(self.raw_headers)+1:])
+
+        # print headers
+        if("Cookie" in self.raw_headers):
+            self.__process_cookies()
+
+    def __process_headers(self, headerText):
         headers = dict()
         c = 0
-        for h in data[1:]:
+        for h in headerText:
             # print repr(h)
             if h == "":
                 break
             h = h.split(":")
             headers[h[0]] = ''.join(h[1])
-        self.body = ''.join(requesttext.splitlines(True)[len(headers)+1:])
-        self.raw_headers = headers
-        # print headers
-        if("Cookie" in headers):
-            self.__process_cookies()
+        return headers
 
     def __process_path(self):
         self.params = dict()
